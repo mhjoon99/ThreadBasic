@@ -17,6 +17,18 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
     }
+    class WorkerThread extends Thread{
+        public void run(){
+            int i = 0;
+            for (i = 0; i < 20 && running; i++) {
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                }
+                Log.v(TAG, "Thread time : " + i);
+            }
+        }
+    }
 
     @Override
     protected void onStart() {
@@ -37,6 +49,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         wr.start();
+
+        wt = new WorkerThread();
+        wt.start();
+
         Log.v(TAG, "Now I am in onStart");
     }
 
@@ -54,8 +70,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onPostResume() {
-        super.onPostResume();
+    protected void onResume() {
+        super.onResume();
         Log.d(TAG, "Now I am in onResume");
     }
 }
