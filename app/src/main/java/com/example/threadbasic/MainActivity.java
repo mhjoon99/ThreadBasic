@@ -8,6 +8,7 @@ import android.util.Log;
 
 public class MainActivity extends AppCompatActivity {
     Thread wr;
+    WorkerThread wt;
     boolean running = true;
     final String TAG = "THREAD2";
 
